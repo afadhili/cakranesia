@@ -63,6 +63,10 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Cakranesia" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+          name="google-site-verification"
+          content="XSKggyaQHzGCGlIY-1sqQH-bw8EJYIpZLE4pf6bVTrg"
+        />
 
         {/* Structured Data */}
         <StructuredData data={organizationSchema} />
