@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,7 +27,7 @@ import {
 import { toast } from "sonner";
 import { PasswordStrength } from "@/components/auth/password-strength";
 
-export default function ResetPasswordPage() {
+function ResetPasswordForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [error, setError] = useState<string | null>(null);
@@ -252,5 +252,43 @@ export default function ResetPasswordPage() {
         </CardFooter>
       </Card>
     </div>
+  );
+}
+
+function ResetPasswordLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-background to-muted p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-4">
+          <Link href="/" className="flex flex-col items-center space-y-2">
+            <Image
+              src="/logo.webp"
+              alt="Cakranesia Logo"
+              width={80}
+              height={80}
+              className="rounded-lg"
+            />
+            <h1 className="text-3xl font-semibold font-serif text-primary text-center">
+              Cakranesia
+            </h1>
+          </Link>
+          <CardTitle className="text-xl font-bold text-center">
+            Reset your password
+          </CardTitle>
+          <CardDescription className="text-center">Loading...</CardDescription>
+        </CardHeader>
+        <CardContent className="flex justify-center py-8">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<ResetPasswordLoading />}>
+      <ResetPasswordForm />
+    </Suspense>
   );
 }
