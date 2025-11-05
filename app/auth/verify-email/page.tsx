@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,7 @@ import Image from "next/image";
 import { Loader2, CheckCircle2, AlertCircle, Mail } from "lucide-react";
 import { toast } from "sonner";
 
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<"verifying" | "success" | "error">(
@@ -239,5 +239,43 @@ export default function VerifyEmailPage() {
         </CardFooter>
       </Card>
     </div>
+  );
+}
+
+function VerifyEmailLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-background to-muted p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-4">
+          <div className="flex flex-col items-center space-y-2">
+            <Image
+              src="/logo.webp"
+              alt="Cakranesia Logo"
+              width={80}
+              height={80}
+              className="rounded-lg"
+            />
+            <h1 className="text-3xl font-bold text-center">Cakranesia</h1>
+          </div>
+          <div className="flex justify-center">
+            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+          </div>
+          <CardTitle className="text-2xl font-bold text-center">
+            Loading...
+          </CardTitle>
+          <CardDescription className="text-center">
+            Please wait a moment.
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    </div>
+  );
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={<VerifyEmailLoading />}>
+      <VerifyEmailContent />
+    </Suspense>
   );
 }
