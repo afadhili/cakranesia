@@ -1,0 +1,70 @@
+{
+  "name": "Cakranesia - Melestarikan Cita Rasa Indonesia",
+  "short_name": "Cakranesia",
+  "description": "Platform komunitas pecinta kuliner Indonesia. Temukan resep autentik, berbagi cerita kuliner, dan jelajahi kekayaan cita rasa Nusantara dari Sabang sampai Merauke.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#facc15",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "dir": "ltr",
+  "lang": "id",
+  "categories": ["food", "lifestyle", "social"],
+  "icons": [
+    {
+      "src": "/logo.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.jpg",
+      "type": "image/jpeg",
+      "sizes": "1280x720",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/mobile.jpg",
+      "type": "image/jpeg",
+      "sizes": "750x1334",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Cari Resep",
+      "short_name": "Cari",
+      "description": "Cari resep masakan Indonesia",
+      "url": "/search",
+      "icons": [
+        {
+          "src": "/logo.webp",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Komunitas",
+      "short_name": "Komunitas",
+      "description": "Lihat komunitas pecinta kuliner",
+      "url": "/komunitas",
+      "icons": [
+        {
+          "src": "/logo.webp",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
