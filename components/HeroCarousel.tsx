@@ -21,10 +21,17 @@ const heroImagesContent = [
 ];
 
 const shimmer = `
-  <svg width="700" height="475" xmlns="http://www.w3.org/2000/svg">
-    <rect width="700" height="475" fill="#f3f3f3"/>
-    <rect id="r" width="700" height="475" fill="#ecebeb"/>
-    <animate xlink:href="#r" attributeName="x" from="-700" to="700" dur="1s" repeatCount="indefinite" />
+  <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="300" fill="#b5b5b5" />
+    <rect id="r" width="300" height="300" fill="#a3a3a3" />
+    <animate
+      xlinkHref="#r"
+      attributeName="x"
+      from="-700"
+      to="700"
+      dur="1s"
+      repeatCount="indefinite"
+    />
   </svg>`;
 
 const toBase64 = (str: string) =>
@@ -58,10 +65,12 @@ export const HeroCarousel = () => {
         >
           <Image
             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer)}`}
+            placeholder="blur"
             src={heroImagesContent[currentIndex].src}
             alt={heroImagesContent[currentIndex].alt}
             width={300}
             height={300}
+            loading="lazy"
             className="rounded-full mb-4 opacity-90 hover:opacity-100 shadow-lg transition-all duration-300"
           />
           <motion.h1
