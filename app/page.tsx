@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { generateMetadata, generateBreadcrumbSchema } from "@/lib/metadata";
 import { StructuredData } from "@/components/structured-data";
+import { HeroCarousel } from "@/components/HeroCarousel";
 
 export const metadata: Metadata = generateMetadata({
   title: "Beranda",
@@ -43,11 +44,11 @@ export default function Home() {
       <Navbar />
       <div className="flex flex-col min-h-screen">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 md:py-32">
-          <div className="absolute inset-0 bg-[url('../public/image/batik_dark.png')] dark:bg-[url('../public/image/batik_light.png')] bg-contain bg-center opacity-60" />
-          <div className="absolute inset-0 bg-linear-to-r from-transparent via-background to-transparent" />
+        <section className="relative flex flex-col gap-16 md:gap-6 lg:flex-row items-center py-20 lg:py-32 px-8 md:px-32">
+          <div className="absolute inset-0 bg-[url('../public/image/batik_dark.png')] dark:bg-[url('../public/image/batik_light.png')] bg-contain bg-center opacity-30 dark:opacity-20" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-background" />
           <div className="container mx-auto max-w-6xl relative z-10">
-            <div className="text-center space-y-6">
+            <div className="space-y-6">
               <div className="animate-pulse inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
                 <ChefHat className="h-4 w-4" />
                 <span>Platform Kuliner Nusantara</span>
@@ -55,16 +56,16 @@ export default function Home() {
 
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight font-serif">
                 Melestarikan Cita Rasa
-                <span className="block text-primary mt-2">Indonesia</span>
+                <span className="text-primary mt-2"> Indonesia</span>
               </h1>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
                 Jelajahi kekayaan kuliner Nusantara dari Sabang sampai Merauke.
                 Temukan resep autentik, berbagi cerita, dan bergabung dengan
                 komunitas pecinta kuliner Indonesia.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+              <div className="flex gap-4 items-center pt-4">
                 <Link href="/register">
                   <Button
                     size="lg"
@@ -86,10 +87,13 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className="container z-10 flex gap-8">
+            <HeroCarousel />
+          </div>
         </section>
 
         {/* Features Section */}
-        <section className="py-16 px-4 md:py-24 bg-muted/50">
+        <section className="py-16 px-4 md:py-24 bg-background">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
