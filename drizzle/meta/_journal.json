@@ -15,6 +15,13 @@
       "when": 1762346187307,
       "tag": "0001_smooth_captain_universe",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762401996364,
+      "tag": "0002_black_senator_kelly",
+      "breakpoints": true
     }
   ]
 }

@@ -43,15 +43,17 @@ export default function Home() {
       <Navbar />
       <div className="flex flex-col min-h-screen">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 md:py-32 bg-linear-to-br from-background via-accent/30 to-background">
-          <div className="container mx-auto max-w-6xl">
+        <section className="relative py-20 px-4 md:py-32">
+          <div className="absolute inset-0 bg-[url('../public/image/batik_dark.png')] dark:bg-[url('../public/image/batik_light.png')] bg-contain bg-center opacity-60" />
+          <div className="absolute inset-0 bg-linear-to-r from-transparent via-background to-transparent" />
+          <div className="container mx-auto max-w-6xl relative z-10">
             <div className="text-center space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+              <div className="animate-pulse inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
                 <ChefHat className="h-4 w-4" />
                 <span>Platform Kuliner Nusantara</span>
               </div>
 
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight font-serif">
                 Melestarikan Cita Rasa
                 <span className="block text-primary mt-2">Indonesia</span>
               </h1>

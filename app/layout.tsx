@@ -43,7 +43,7 @@ export const metadata: Metadata = genMetadata({
   ],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -68,7 +68,6 @@ export default function RootLayout({
           content="XSKggyaQHzGCGlIY-1sqQH-bw8EJYIpZLE4pf6bVTrg"
         />
 
-        {/* Structured Data */}
         <StructuredData data={organizationSchema} />
         <StructuredData data={websiteSchema} />
       </head>

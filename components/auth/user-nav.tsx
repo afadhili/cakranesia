@@ -21,7 +21,7 @@ export function UserNav() {
 
   const handleSignOut = async () => {
     await authClient.signOut();
-    router.push("/");
+    router.push("/auth/sign-in");
     router.refresh();
   };
 
@@ -34,16 +34,7 @@ export function UserNav() {
   }
 
   if (!session) {
-    return (
-      <div className="flex gap-2">
-        <Button variant="ghost" asChild>
-          <Link href="/auth/sign-in">Sign In</Link>
-        </Button>
-        <Button asChild>
-          <Link href="/auth/sign-up">Sign Up</Link>
-        </Button>
-      </div>
-    );
+    return <></>;
   }
 
   const user = session.user;
@@ -58,7 +49,10 @@ export function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+        <Button
+          variant="outline"
+          className="relative h-10 w-10 rounded-full cursor-pointer"
+        >
           <Avatar className="h-10 w-10">
             <AvatarImage
               src={user.image || undefined}

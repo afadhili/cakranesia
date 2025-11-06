@@ -1,4 +1,12 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  boolean,
+  pgEnum,
+  primaryKey,
+} from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -64,3 +72,116 @@ export const verification = pgTable("verification", {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
 });
+
+export const province = pgTable("province", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  code: text("code").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const culinaryTypeEnum = pgEnum("culinary_type", [
+  "food",
+  "drink",
+  "beverage",
+]);
+
+export const category = pgTable("category", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const culinary = pgTable("culinary", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  image: text("image").notNull(),
+  description: text("description").notNull(),
+  type: culinaryTypeEnum("type").notNull(),
+  provinceId: text("province_id")
+    .references(() => province.id)
+    .notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const recipe = pgTable("recipe", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  ingredients: text("ingredients").notNull(),
+  steps: text("steps").notNull(),
+  culinaryId: text("culinary_id")
+    .references(() => culinary.id, { onDelete: "cascade" })
+    .notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const culinaryCategory = pgTable(
+  "culinary_category",
+  {
+    culinaryId: text("culinary_id")
+      .references(() => culinary.id, { onDelete: "cascade" })
+      .notNull(),
+    categoryId: text("category_id")
+      .references(() => category.id, { onDelete: "cascade" })
+      .notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.culinaryId, table.categoryId] }),
+  }),
+);
+
+export const provinceRelations = relations(province, ({ many }) => ({
+  culinaries: many(culinary),
+}));
+
+export const culinaryRelations = relations(culinary, ({ one, many }) => ({
+  province: one(province, {
+    fields: [culinary.provinceId],
+    references: [province.id],
+  }),
+  culinaryCategories: many(culinaryCategory),
+  recipes: many(recipe),
+}));
+
+export const categoryRelations = relations(category, ({ many }) => ({
+  culinaryCategories: many(culinaryCategory),
+}));
+
+export const culinaryCategoryRelations = relations(
+  culinaryCategory,
+  ({ one }) => ({
+    culinary: one(culinary, {
+      fields: [culinaryCategory.culinaryId],
+      references: [culinary.id],
+    }),
+    category: one(category, {
+      fields: [culinaryCategory.categoryId],
+      references: [category.id],
+    }),
+  }),
+);
+
+export const recipeRelations = relations(recipe, ({ one }) => ({
+  culinary: one(culinary, {
+    fields: [recipe.culinaryId],
+    references: [culinary.id],
+  }),
+}));
