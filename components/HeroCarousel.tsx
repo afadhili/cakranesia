@@ -20,6 +20,18 @@ const heroImagesContent = [
   },
 ];
 
+const shimmer = `
+  <svg width="700" height="475" xmlns="http://www.w3.org/2000/svg">
+    <rect width="700" height="475" fill="#f3f3f3"/>
+    <rect id="r" width="700" height="475" fill="#ecebeb"/>
+    <animate xlink:href="#r" attributeName="x" from="-700" to="700" dur="1s" repeatCount="indefinite" />
+  </svg>`;
+
+const toBase64 = (str: string) =>
+  typeof window === "undefined"
+    ? Buffer.from(str).toString("base64")
+    : window.btoa(str);
+
 export const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -45,6 +57,7 @@ export const HeroCarousel = () => {
           className="flex flex-col items-center"
         >
           <Image
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer)}`}
             src={heroImagesContent[currentIndex].src}
             alt={heroImagesContent[currentIndex].alt}
             width={300}

@@ -44,7 +44,7 @@ export default function Home() {
       <Navbar />
       <div className="flex flex-col min-h-screen">
         {/* Hero Section */}
-        <section className="relative flex flex-col gap-16 md:gap-6 lg:flex-row items-center py-20 lg:py-32 px-8 md:px-32">
+        <section className="relative flex flex-col gap-16 md:gap-6 lg:flex-row items-center py-20 lg:py-32 px-4 md:px-32">
           <div className="absolute inset-0 bg-[url('../public/image/batik_dark.png')] dark:bg-[url('../public/image/batik_light.png')] bg-contain bg-center opacity-30 dark:opacity-20" />
           <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-background" />
           <div className="container mx-auto max-w-6xl relative z-10">
