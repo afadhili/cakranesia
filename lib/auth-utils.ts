@@ -1,3 +1,4 @@
+"use server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -122,14 +123,14 @@ export async function hasPermissions(permissions: string[]) {
 /**
  * Format user display name
  */
-export function formatUserName(user: { name?: string; email: string }) {
+export async function formatUserName(user: { name?: string; email: string }) {
   return user.name || user.email.split("@")[0];
 }
 
 /**
  * Get user initials for avatar
  */
-export function getUserInitials(user: { name?: string; email: string }) {
+export async function getUserInitials(user: { name?: string; email: string }) {
   if (user.name) {
     return user.name
       .split(" ")

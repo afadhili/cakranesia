@@ -70,8 +70,7 @@ export const HeroCarousel = () => {
             alt={heroImagesContent[currentIndex].alt}
             width={300}
             height={300}
-            loading="lazy"
-            className="rounded-full mb-4 opacity-90 hover:opacity-100 shadow-lg transition-all duration-300"
+            className="rounded-full mb-4 opacity-90 hover:opacity-100 shadow-xl transition-all duration-300"
           />
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -87,6 +86,12 @@ export const HeroCarousel = () => {
               .slice(1)
               .join(" ")}
           </motion.h1>
+          <motion.div
+            initial={{ opacity: 0, width: "0%" }}
+            animate={{ opacity: 1, width: "70%" }}
+            transition={{ delay: 0.2 }}
+            className="h-2 rounded-md bg-primary mt-4"
+          />
         </motion.div>
       </AnimatePresence>
     </div>

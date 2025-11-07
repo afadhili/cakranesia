@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -20,6 +20,10 @@ import { Label } from "@/components/ui/label";
 export default function SignInPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const { data, isPending } = useSession();
+  if (data) {
+    redirect("/");
+  }
 
   const {
     register,
@@ -67,6 +71,14 @@ export default function SignInPage() {
       console.error("Sign in error:", err);
     }
   };
+
+  if (isPending) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="h-24 w-24 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <Card className="w-full max-w-md">

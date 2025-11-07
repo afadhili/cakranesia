@@ -1,9 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -24,6 +23,7 @@ import { toast } from "sonner";
 import { SocialLogin } from "@/components/auth/social-login";
 import { FormField } from "@/components/auth/form-field";
 import { PasswordStrength } from "@/components/auth/password-strength";
+import { redirect } from "next/navigation";
 
 export default function SignUpPage() {
   const [error, setError] = useState<string | null>(null);
@@ -31,6 +31,10 @@ export default function SignUpPage() {
   const [success, setSuccess] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [isResending, setIsResending] = useState(false);
+  const { data, isPending } = useSession();
+  if (data) {
+    redirect("/");
+  }
 
   const {
     register,
@@ -101,6 +105,14 @@ export default function SignUpPage() {
       setIsResending(false);
     }
   };
+
+  if (isPending) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="h-24 w-24 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   if (success) {
     return (

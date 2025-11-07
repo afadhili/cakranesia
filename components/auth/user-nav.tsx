@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { User, Settings, LogOut, Loader2 } from "lucide-react";
+import { User, Settings, LogOut, Loader2, Users } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -51,9 +51,9 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="relative h-10 w-10 rounded-full cursor-pointer"
+          className="relative h-9 w-9 rounded-full cursor-pointer"
         >
-          <Avatar className="h-10 w-10">
+          <Avatar className="h-9 w-9">
             <AvatarImage
               src={user.image || undefined}
               alt={user.name || user.email}
@@ -73,11 +73,19 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/dashboard" className="cursor-pointer">
+          <Link href="/profile" className="cursor-pointer">
             <User className="mr-2 h-4 w-4" />
-            Dashboard
+            Profile
           </Link>
         </DropdownMenuItem>
+        {user.role === "admin" && (
+          <DropdownMenuItem asChild>
+            <Link href="/admin">
+              <Users className="mr-2 h-4 w-4" />
+              Admin Dashboard
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild>
           <Link href="/settings" className="cursor-pointer">
             <Settings className="mr-2 h-4 w-4" />

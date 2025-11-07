@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  reactStrictMode: false,
   // i18n: {
   //   locales: ["en", "id"],
   //   defaultLocale: "id",
