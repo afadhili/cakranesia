@@ -13,6 +13,7 @@ import { Metadata } from "next";
 import { generateMetadata, generateBreadcrumbSchema } from "@/lib/metadata";
 import { StructuredData } from "@/components/structured-data";
 import { HeroCarousel } from "@/components/HeroCarousel";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = generateMetadata({
   title: "Beranda",
@@ -225,45 +226,7 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t py-8 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-6xl">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex items-center space-x-2">
-                <ChefHat className="h-5 w-5 text-primary" />
-                <span className="font-bold text-primary">Cakranesia</span>
-              </div>
-              <p className="text-sm text-muted-foreground text-center">
-                © 2024 Cakranesia. Melestarikan Cita Rasa Indonesia.
-              </p>
-              <div className="flex space-x-4 text-sm text-muted-foreground">
-                <Link
-                  href="/tentang"
-                  className="hover:text-primary transition-colors"
-                >
-                  Tentang
-                </Link>
-                <Link
-                  href="/kontak"
-                  className="hover:text-primary transition-colors"
-                >
-                  Kontak
-                </Link>
-                <Link
-                  href="/privacy"
-                  className="hover:text-primary transition-colors"
-                >
-                  Privasi
-                </Link>
-                <Link
-                  href="/terms"
-                  className="hover:text-primary transition-colors"
-                >
-                  Ketentuan
-                </Link>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );

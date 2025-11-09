@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Moon, Sun, Menu, X, Loader2 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -11,10 +11,9 @@ import { UserNav } from "./auth/user-nav";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
-  { label: "Provinsi", href: "/provinsi" },
-  { label: "Rekomendasi", href: "/rekomendasi" },
+  { label: "Pencarian", href: "/pencarian" },
   { label: "Chat Bot", href: "/chatbot" },
-  { label: "Contact Tim", href: "/contact" },
+  { label: "Komunitas", href: "/komunitas" },
 ];
 
 export default function Navbar() {
@@ -45,7 +44,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 right-0 left-0 z-50 flex flex-col">
-      <div className="z-10 w-full flex justify-between items-center px-4 md:px-8 py-2 backdrop-blur-md bg-background/50 border-b">
+      <div className="z-10 w-full flex justify-between items-center px-4 md:px-8 py-2 backdrop-blur-md bg-background/80 border-b">
         <div className="flex items-center gap-4">
           <Button
             size="icon"
@@ -66,7 +65,7 @@ export default function Navbar() {
               width={40}
               height={40}
               alt="Logo"
-              className="h-12 w-12 mr-2"
+              className="h-8 w-8 md:h-12 md:w-12 mr-2"
             />
             <span className="font-serif text-xl md:text-2xl font-semibold text-primary">
               Cakranesia
@@ -117,7 +116,7 @@ export default function Navbar() {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -10 }}
-            className="lg:hidden backdrop-blur-md bg-background/50 border-l -z-10 w-2/3 h-screen"
+            className="lg:hidden backdrop-blur-md bg-background/80 border-r -z-10 w-2/3 h-screen"
             id="mobile-menu"
           >
             <div className="flex flex-col px-4 pt-2 pb-4 gap-2 font-serif">
